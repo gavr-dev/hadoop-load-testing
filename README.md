@@ -10,15 +10,15 @@ python3 files-generator.py --nameservice ns --parquet \
 
 ### hdfs testing
 ```shell
-python3 load-hdfs-testing.py --path hdfs://ns/user/spark/small_files_2021-04-08_14-39-15 --parallel_threads 2 --request_count 2 --download_folder /tmp
+python3 load-hdfs-testing.py --path hdfs://ns/user/spark/small_files_2021-09-23_11-39-15 --parallel_threads 2 --request_count 2 --download_folder /tmp
 ```
 
 ### hive testing
 ```shell
-
+python3 load-hive-testing.py --hive_server hive-server.lc.cluster --parallel_threads 1 --request_count 1 --database default --table small_files_2021-09-23_11_39_15__1 --select
 ```
 
 ### spark testing
 ```shell
-
+python3 load-spark-testing.py --nameservice ns --parallel_threads 1 --request_count 2 --path /user/spark/small_files_2021-09-23_11-39-15/1/file-1-0.parquet --select
 ```
