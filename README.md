@@ -1,24 +1,53 @@
-## Command
-### files-generator
+<h1 align="center">Hadoop Load Testing Utils</h1>
+<p align="center">
+<img src="https://img.shields.io/github/last-commit/gavr-dev/hadoop-load-testing"/>
+<a href="https://github.com/gavr-dev/hadoop-load-testing/tags" alt="Tag"><img src="https://img.shields.io/github/v/tag/gavr-dev/hadoop-load-testing"/></a>
+<a href="https://github.com/gavr-dev/hadoop-load-testing/blob/main/LICENSE" alt="GPLv3 licensed"><img src="https://img.shields.io/badge/license-GPLv3-blue"/></a>
+</p>
+
+The repository contains a set of utilities for preparing data (regular and parquet files) and generating load on Apache Hadoop.
+
+## HDFS file generator
 ```shell
-python files-generator.py --nameservice ns --parquet \
- --hdfs_upload_folder '/user/spark' \
- --folder_name small_files --sub_folder_count 1 --files_count 2 --file_size 2 \
- --hive_server "hive-server.lc.cluster" --database default \
- --local_tmp_folder /tmp
+python files-generator.py \
+  --nameservice '' \
+  --parquet \
+  --hdfs_upload_folder '' \
+  --folder_name '' \
+  --sub_folder_count 10 \
+  --files_count 500 \
+  --file_size 5 \
+  --hive_server "" \
+  --database default \
+  --local_tmp_folder /tmp
 ```
 
-### hdfs testing
+## HDFS testing
 ```shell
-python load-hdfs-testing.py --path hdfs://ns/user/spark/small_files_2021-09-23_11-39-15 --parallel_threads 2 --request_count 2 --download_folder /tmp
+python load-hdfs-testing.py \
+  --path '' \
+  --parallel_threads 4 \
+  --request_count 10 \
+  --download_folder /tmp
 ```
 
-### hive testing
+## Hive testing
 ```shell
-python load-hive-testing.py --hive_server hive-server.lc.cluster --parallel_threads 1 --request_count 1 --database default --table small_files_2021-09-23_11_39_15__1 --select
+python load-hive-testing.py \
+  --hive_server '' \
+  --parallel_threads 4 \
+  --request_count 10 \
+  --database '' \
+  --table '' \
+  --select
 ```
 
-### spark testing
+## Spark testing
 ```shell
-python load-spark-testing.py --nameservice ns --parallel_threads 1 --request_count 2 --path /user/spark/small_files_2021-09-23_11-39-15/1/file-1-0.parquet --select
+python load-spark-testing.py \
+  --nameservice '' \
+  --parallel_threads 4 \
+  --request_count 10 \
+  --path '' \
+  --select
 ```
